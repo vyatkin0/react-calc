@@ -7,11 +7,9 @@ interface CheckBoxProps {
     onChange?: (v: boolean) => void;
 }
 
-const CheckBox = (props: React.PropsWithChildren<CheckBoxProps>) => {
-    return <div className={classes.main}>
-        <input type="checkbox" id={props.id} name={props.id} checked={props.checked} onChange={(e) => { props.onChange?.(!props.checked); }} />
-        {props.children && <label htmlFor={props.id}>{props.children}</label>}
-    </div>;
-}
+const CheckBox = (props: React.PropsWithChildren<CheckBoxProps>) => <div className={classes.main}>
+    <input type="checkbox" id={props.id} name={props.id} checked={props.checked} onChange={(e) => { props.onChange?.(!props.checked); }} />
+    {props.children && <label htmlFor={props.id}>{props.children}</label>}
+</div>;
 
 export default CheckBox;
