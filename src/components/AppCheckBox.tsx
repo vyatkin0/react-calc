@@ -8,11 +8,8 @@ interface CheckBoxProps {
 }
 
 const CheckBox = (props: React.PropsWithChildren<CheckBoxProps>) => {
-
-    const [checked, setChecked] = React.useState(!!props.checked);
-
     return <div className={classes.main}>
-        <input type="checkbox" id={props.id} name={props.id} checked={checked} onChange={(e) => { setChecked(!checked); props.onChange?.(!checked); }} />
+        <input type="checkbox" id={props.id} name={props.id} checked={props.checked} onChange={(e) => { props.onChange?.(!props.checked); }} />
         {props.children && <label htmlFor={props.id}>{props.children}</label>}
     </div>;
 }
