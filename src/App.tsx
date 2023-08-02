@@ -206,7 +206,7 @@ export default () => {
             <div className={classes.header}>
                 <div>Calculation Form</div>
                 <div style={{ width: 300 }}>
-                    <SelectYears selected={selectedYears} years={years} onChanged={setSelectedYears} />
+                    <SelectYears id='years' selected={selectedYears} years={years} onChanged={setSelectedYears} />
                 </div>
             </div>
             <div className={classes.section}>
@@ -214,6 +214,7 @@ export default () => {
                 <div className={classes.itemsRow}>
                     <div className={classes.itemsColumn2}>
                         <RatioField
+                            id='multiplier'
                             placeholder='Multiplier'
                             title='Multiplier'
                             value={state.multiplier}
@@ -222,6 +223,7 @@ export default () => {
                     </div>
                     <div className={classes.itemsColumn2}>
                         <RatioField
+                            id='divider'
                             placeholder='Divider'
                             title='Divider'
                             value={state.divider}
@@ -237,6 +239,7 @@ export default () => {
                             <div key={y} className={classes.itemsRow}>
                                 {months.map((m, im) => (
                                     <RatioField
+                                        id={'value-' + m}
                                         key={m}
                                         placeholder={m + '.' + (y % 100)}
                                         title={m + '.' + (y % 100)}
@@ -250,7 +253,7 @@ export default () => {
                 })}
             </div>
             <div className={classes.actions} >
-                <CheckBox checked={state.checked} onChange={onCheck}>Enable calculation</CheckBox>
+                <CheckBox id='enable-calc' checked={state.checked} onChange={onCheck}>Enable calculation</CheckBox>
                 {message.type !== 'none' && <Message {...message} onKeyDown={onMessageKeyDown} onClick={onMessageClick} />}
                 <RatioButton
                     isDisabled={!state.multiplier || !state.divider || !state.checked}

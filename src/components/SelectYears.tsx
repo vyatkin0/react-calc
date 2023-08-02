@@ -32,8 +32,10 @@ const SelectYears = (props: SelectYearsProps) => {
         props.onChanged(newSelected);
     };
 
+    const dropdownId = props.id + '-list';
+
     const dropdownList = React.useMemo(() =>
-        <div className={classes.dropdown} id='years-list' role='listbox' aria-label='Years'>
+        <div className={classes.dropdown} id={dropdownId} role='listbox' aria-label='Years'>
             {props.years.map((y) => {
                 const selected = props.selected.includes(y);
                 let className = classes.checkbox + (selected ? ' ' + classes.selected : '');
@@ -94,26 +96,28 @@ const SelectYears = (props: SelectYearsProps) => {
 
     const actionsWidth = props.selected.length > 0 ? 35 : 10;
 
+    const labelId = props.id + '-years-label';
+
     return <div ref={mainDivRef}
         className={mainClass}
         id={props.id}
         tabIndex={0}
         onKeyDown={onKeyDown}
         role='combobox'
-        aria-labelledby='years-label'
-        aria-controls='years-list'
+        aria-labelledby={labelId}
+        aria-controls={dropdownId}
         aria-expanded={isOpened}>
         {props.selected.length > 0
             ? <>
-                <label className={classes.label} id='years-label'>{title}</label>
+                <label className={classes.label} id={labelId}>{title}</label>
                 <span>{props.selected.join()}</span>
             </>
-            : <span className={classes.title} id='years-label'>{title}</span>}
+            : <span className={classes.title} id={labelId}>{title}</span>}
         <span className={classes.actions} style={{ width: actionsWidth }}>
             {props.selected.length > 0 && <span onClick={handleClear}>
                 {CancelIcon}
             </span>}
-            <span onClick={openerClick} aria-haspopup='listbox' aria-controls='years-list'>
+            <span onClick={openerClick} aria-haspopup='listbox' aria-controls={isOpened ? dropdownId : undefined}>
                 <svg width='10' height='20' xmlns='http://www.w3.org/2000/svg'><path d={openerPath} fill='currentColor'></path></svg>
             </span>
         </span>

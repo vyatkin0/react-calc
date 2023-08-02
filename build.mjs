@@ -13,4 +13,5 @@ await esbuild.build({
 })
 
 await copyFile('src/index.html', 'dist/index.html');
+await copyFile('src/favicon.ico', 'dist/favicon.ico');
 await copyFile('src/index.css', 'dist/index.css');
