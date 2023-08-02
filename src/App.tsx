@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Message, { MessageProps } from './components/Message';
-import RatioField from './components/AppField';
-import RatioButton from './components/AppButton';
+import AppField from './components/AppField';
+import AppButton from './components/AppButton';
 import SelectYears from './components/SelectYears';
-import CheckBox from './components/AppCheckBox';
+import AppCheckBox from './components/AppCheckBox';
 import classes from './App.module.css';
 
 const nowYear = new Date().getFullYear();
@@ -213,7 +213,7 @@ export default () => {
                 <h2 className={classes.head2}>Global factors</h2>
                 <div className={classes.itemsRow}>
                     <div className={classes.itemsColumn2}>
-                        <RatioField
+                        <AppField
                             id='multiplier'
                             placeholder='Multiplier'
                             title='Multiplier'
@@ -222,7 +222,7 @@ export default () => {
                         />
                     </div>
                     <div className={classes.itemsColumn2}>
-                        <RatioField
+                        <AppField
                             id='divider'
                             placeholder='Divider'
                             title='Divider'
@@ -238,7 +238,7 @@ export default () => {
                         iy >= 0 && (
                             <div key={y} className={classes.itemsRow}>
                                 {months.map((m, im) => (
-                                    <RatioField
+                                    <AppField
                                         id={'value-' + m}
                                         key={m}
                                         placeholder={m + '.' + (y % 100)}
@@ -253,12 +253,12 @@ export default () => {
                 })}
             </div>
             <div className={classes.actions} >
-                <CheckBox id='enable-calc' checked={state.checked} onChange={onCheck}>Enable calculation</CheckBox>
+                <AppCheckBox id='enable-calc' checked={state.checked} onChange={onCheck}>Enable calculation</AppCheckBox>
                 {message.type !== 'none' && <Message {...message} onKeyDown={onMessageKeyDown} onClick={onMessageClick} />}
-                <RatioButton
+                <AppButton
                     isDisabled={!state.multiplier || !state.divider || !state.checked}
                     onClick={onStart}
-                >Start calculation</RatioButton>
+                >Start calculation</AppButton>
             </div>
         </div>
     );
