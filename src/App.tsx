@@ -199,15 +199,15 @@ export default () => {
                 payload: { type: 'info', text: r, title }
             });
         }
-        catch (e: any) {
-            const text = e instanceof Error ? e.message : e.toString();
+        catch (e) {
+            const text = e instanceof Error ? e.message : (e as {toString: ()=>string}).toString?.();
 
             dispatch({
                 type: 'set_message',
                 payload: { type: 'error', text, title }
             });
         }
-    }, [formState, dispatch]);
+    }, [formState]);
 
     const onMessageKeyDown = React.useCallback((event: React.KeyboardEvent) => {
         switch (event.key) {
@@ -217,17 +217,17 @@ export default () => {
                 event.stopPropagation();
                 break;
         }
-    }, [dispatch]);
+    }, []);
 
-    const onMessageClick = React.useCallback(() => dispatch({ type: 'set_message' }), [dispatch]);
+    const onMessageClick = React.useCallback(() => dispatch({ type: 'set_message' }), []);
 
-    const onCheck = React.useCallback((c: boolean) => dispatch({ type: 'changed_enable', payload: c }), [dispatch]);
+    const onCheck = React.useCallback((c: boolean) => dispatch({ type: 'changed_enable', payload: c }), []);
 
-    const onChangeM = React.useCallback((v: string) => dispatch({ type: 'set_mul', payload: v }), [dispatch]);
+    const onChangeM = React.useCallback((v: string) => dispatch({ type: 'set_mul', payload: v }), []);
 
-    const onChangeD = React.useCallback((v: string) => dispatch({ type: 'set_div', payload: v }), [dispatch]);
+    const onChangeD = React.useCallback((v: string) => dispatch({ type: 'set_div', payload: v }), []);
 
-    const setSelectedYears = React.useCallback((years: number[]) => dispatch({ type: 'select_years', payload: years }), [dispatch]);
+    const setSelectedYears = React.useCallback((years: number[]) => dispatch({ type: 'select_years', payload: years }), []);
 
     return <div>
         <div className={classes.header}>

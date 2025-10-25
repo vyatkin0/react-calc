@@ -11,6 +11,8 @@ interface AppFieldProps {
 }
 
 const AppField = (props: AppFieldProps) => {
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleClear(e: React.MouseEvent) {
         props.onChange?.('');
     }
